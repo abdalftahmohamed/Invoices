@@ -32,7 +32,7 @@ class InvoicesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -44,7 +44,7 @@ class InvoicesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -140,7 +140,7 @@ class InvoicesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Invoices  $invoices
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
@@ -272,5 +272,9 @@ class InvoicesController extends Controller
     {
         $invoices = Invoices::where('Value_Status',3)->get();
         return view('invoices.invoices_Partial',compact('invoices'));
+    }
+    public function Print_invoice($id){
+        $invoices = invoices::where('id', $id)->first();
+        return view('invoices.Print_invoice',compact('invoices'));
     }
 }

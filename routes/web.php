@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,7 @@ Route::group(['middleware'=>['auth','verified']],function () {
     Route::get('Invoice_Paid','\App\Http\Controllers\InvoicesController@Invoice_Paid');
     Route::get('Invoice_UnPaid','\App\Http\Controllers\InvoicesController@Invoice_UnPaid');
     Route::get('Invoice_Partial','\App\Http\Controllers\InvoicesController@Invoice_Partial');
+    Route::get('Print_invoice/{id}','\App\Http\Controllers\InvoicesController@Print_invoice');
 
 
 

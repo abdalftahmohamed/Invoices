@@ -13,6 +13,7 @@ return [
     |
     */
 
+
     'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
@@ -29,10 +30,9 @@ return [
     | mailers below. You are free to add additional mailers as required.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses",
-    |            "postmark", "log", "array", "failover"
+    |            "postmark", "log", "array"
     |
     */
-
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
@@ -42,6 +42,7 @@ return [
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
+//            'auth_mode' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
@@ -92,8 +93,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'admin@shahin.net'),
+        'name' => env('MAIL_FROM_NAME', 'shahin'),
     ],
 
     /*

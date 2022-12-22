@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\ProfileController;
+//use App\Mail\Testmail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +38,7 @@ Route::group(['middleware'=>['auth','verified']],function () {
     Route::resource('invoices', '\App\Http\Controllers\InvoicesController');
     Route::resource('ArchiveController','\App\Http\Controllers\ArchiveController');
     Route::resource('InvoiceAttachments', '\App\Http\Controllers\InvoiceAttachmentsController');
-    Route::resource('users','\App\Http\Controllers\UserController');
+//    Route::resource('users','\App\Http\Controllers\UserController');
     Route::get('/invoices_details/{id}','\App\Http\Controllers\InvoicesDetailsController@edit');
     Route::get('/invoice_attachments/{id}','\App\Http\Controllers\InvoiceAttachmentsController@index');
     Route::get('/section/{id}', '\App\Http\Controllers\InvoicesController@getproducts');
@@ -53,9 +55,9 @@ Route::group(['middleware'=>['auth','verified']],function () {
     Route::get('Invoice_UnPaid','\App\Http\Controllers\InvoicesController@Invoice_UnPaid');
     Route::get('Invoice_Partial','\App\Http\Controllers\InvoicesController@Invoice_Partial');
     Route::get('Print_invoice/{id}','\App\Http\Controllers\InvoicesController@Print_invoice');
-
-
-
+    Route::get('export_invoices', '\App\Http\Controllers\InvoicesController@export');
+    Route::resource('roles','\App\Http\Controllers\RoleController');
+    Route::resource('users','\App\Http\Controllers\UserController');
 
     Route::get('/{page}', [AdminController::class, 'index']);
 });

@@ -63,7 +63,7 @@
 
 
                             {{--                            {{ url('/' . ($page = 'roles')) }}--}}
-                            <li><a class="slide-item" href="">صلاحيات المستخدمين</a></li>
+                            <li><a class="slide-item" href="{{ url('/' . ($page = 'roles')) }}">صلاحيات المستخدمين</a></li>
 
                         </ul>
                     </li>

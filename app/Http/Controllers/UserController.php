@@ -1,14 +1,12 @@
 <?php
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Sections;
-use Couchbase\Role;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -30,31 +28,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
+        $roles = Role::pluck('name','name')->all();
 
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|unique:users|',
-            'password' => 'required|min:8'
-
-        ],[
-            'email.required'=>"يرجي ادخال الايميل",
-            'name.required'=>"يرجي ادخال الاسم",
-            'email.unique'=>"البريد الالكتروني مكرر من فضلك ادخل ايميل اخر",
-            'password.required'=>"يرجي ادخال كلمة المرور",
-            'password.min'=>"يرجي ادخال علي الاقل 8 احرف",
-        ]);
-
-        User::create([
-            'name' =>$request['name'],
-            'email'  =>$request['email'],
-            'password' => Hash::make($request->password),
-            'status'   =>$request['status'],
-        ]);
-
-        session()->flash('Add','تم اضافة القسم بنجاح');
-        return redirect('/users');
+        return view('users.Add_user',compact('roles'));
 
     }
     /**
@@ -103,9 +81,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-//        $roles = Role::pluck('name','name')->all();
-//        $userRole = $user->roles->pluck('name','name')->all();
-        return view('users.edit',compact('user'));
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('users.edit',compact('user','roles','userRole'));
     }
     /**
      * Update the specified resource in storage.

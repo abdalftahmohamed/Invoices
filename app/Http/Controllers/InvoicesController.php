@@ -24,6 +24,12 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+    function __construct()
+    {
+        $this->middleware('permission:قائمة الفواتير', ['only' => ['index']]);
+        $this->middleware('permission:اضافة فاتورة', ['only' => ['create']]);
+
+    }
     public function index()
     {
         $sections=Sections::all();

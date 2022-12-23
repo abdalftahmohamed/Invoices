@@ -91,8 +91,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>نوع المستخدم</strong>
-{{--                            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple'))--}}
-{{--                            !!}--}}
+                            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple'))
+                            !!}
                         </div>
                     </div>
                 </div>

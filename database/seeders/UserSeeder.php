@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = [
-            ['name'  => 'Admin','email' => 'admin@admin.com','password' =>bcrypt('123456789')],
             ['name'  => 'Editor','email' => 'editor@editor.com','password' =>bcrypt('123456789')],
             ['name'  => 'Author','email' => 'author@author.com','password' =>bcrypt('123456789')],
         ];

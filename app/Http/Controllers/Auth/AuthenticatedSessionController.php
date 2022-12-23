@@ -15,6 +15,11 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\View\View
      */
+//    public function __construct(Request $request)
+//    {
+//        return ['email' => $request->email, 'password' => $request->password, 'status' => 'مفعل'];
+//    }
+
     public function create()
     {
         return view('auth.login');
@@ -28,6 +33,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -51,4 +57,5 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
 }

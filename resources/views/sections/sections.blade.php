@@ -75,15 +75,17 @@
 
 
         <!--div-->
+
         <div class="col-xl-12">
 
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-
+                        @can('اضافة قسم')
                         <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                             <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-rotate-bottom" data-toggle="modal" href="#modaldemo8">تسجيل قسم جديد</a>
                         </div>
+
                         <div class="modal" id="modaldemo8">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content modal-content-demo">
@@ -113,6 +115,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
                 </div>
 
                 <div class="card-body">
@@ -136,16 +139,17 @@
                                 <td>{{$input->section_name}}</td>
                                 <td>{{$input->description}}</td>
                                 <td>
-
+                                    @can('تعديل قسم')
                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                        data-id="{{ $input->id }}" data-section_name="{{ $input->section_name }}"
                                        data-description="{{ $input->description }}" data-toggle="modal" href="#exampleModal2"
                                        title="تعديل"><i class="las la-pen"></i></a>
-
+                                    @endcan
+                                        @can('حذف قسم')
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $input->id }}" data-section_name="{{ $input->section_name }}" data-toggle="modal"
                                        href="#modaldemo9" title="حذف"><i class="las la-trash"></i></a>
-
+                                        @endcan
                                 </td>
                             </tr>
                             @endforeach
@@ -159,6 +163,7 @@
 
         </div>
     </div>
+
     </div>
 
     <!-- row closed -->
@@ -166,9 +171,11 @@
         <!-- edit -->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
+
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+
                         <h5 class="modal-title" id="exampleModalLabel">تعديل القسم</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -196,6 +203,7 @@
                     </form>
                 </div>
             </div>
+
 
     </div>
     <!-- Container closed -->

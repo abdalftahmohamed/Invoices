@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','check_user'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,11 +34,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::group(['middleware'=>['auth','verified']],function () {
+Route::group(['middleware'=>['auth','verified','check_user']],function () {
     Route::resource('invoices', '\App\Http\Controllers\InvoicesController');
     Route::resource('ArchiveController','\App\Http\Controllers\ArchiveController');
     Route::resource('InvoiceAttachments', '\App\Http\Controllers\InvoiceAttachmentsController');
-//    Route::resource('users','\App\Http\Controllers\UserController');
     Route::get('/invoices_details/{id}','\App\Http\Controllers\InvoicesDetailsController@edit');
     Route::get('/invoice_attachments/{id}','\App\Http\Controllers\InvoiceAttachmentsController@index');
     Route::get('/section/{id}', '\App\Http\Controllers\InvoicesController@getproducts');

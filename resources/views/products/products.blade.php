@@ -60,7 +60,7 @@
             </button>
         </div>
     @endif
-        الطريقة الاولي لل validation
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -82,11 +82,12 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         {{--//جدول ادخال جديد--}}
-
+               @can('اضافة منتج')
                         <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20">
                             <a class="modal-effect btn btn-outline-primary btn-block" data-target="#exampleModal"
                                data-toggle="modal" href="#modaldemo8">تسجيل منتج جديد</a>
                         </div>
+
                         <div class="modal" id="modaldemo8">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content modal-content-demo">
@@ -124,6 +125,7 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -148,15 +150,18 @@
                                         <td> {{$product->section->section_name }} </td>
                                         <td>{{$product->description}}</td>
                                         <td>
+                                            @can('تعديل منتج')
                                             <button class="btn btn-outline-success btn-sm"
                                                     data-name="{{ $product->Product_name }}" data-pro_id="{{ $product->id }}"
                                                     data-section_name="{{ $product->section->section_name }}"
                                                     data-description="{{ $product->description }}" data-toggle="modal"
                                                     data-target="#edit_Product">تعديل</button>
-
+                                            @endcan
+                                            @can('حذف منتج')
                                             <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $product->id }}"
                                                     data-product_name="{{ $product->Product_name }}" data-toggle="modal"
                                                     data-target="#modaldemo9">حذف</button>
+                                             @endcan
                                         </td>
                                     </tr>
                                 @endforeach

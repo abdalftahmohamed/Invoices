@@ -12,6 +12,12 @@ class ArchiveController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+    function __construct()
+    {
+        $this->middleware('permission:ارشيف الفواتير', ['only' => ['index']]);
+
+    }
+
     public function index()
     {
         $invoices = invoices::onlyTrashed()->get();

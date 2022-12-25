@@ -22,10 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth','check_user'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,7 +38,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::group(['middleware'=>['auth','verified','check_user']],function () {
+Route::group(['middleware'=>['auth','verified']],function () {
     Route::resource('invoices', '\App\Http\Controllers\InvoicesController');
     Route::resource('ArchiveController','\App\Http\Controllers\ArchiveController');
     Route::resource('InvoiceAttachments', '\App\Http\Controllers\InvoiceAttachmentsController');
@@ -57,6 +61,13 @@ Route::group(['middleware'=>['auth','verified','check_user']],function () {
     Route::get('export_invoices', '\App\Http\Controllers\InvoicesController@export');
     Route::resource('roles','\App\Http\Controllers\RoleController');
     Route::resource('users','\App\Http\Controllers\UserController');
+
+    Route::get('invoices_report', '\App\Http\Controllers\Invoices_Report@index');
+    Route::post('Search_invoices', '\App\Http\Controllers\Invoices_Report@Search_invoices');
+
+    Route::get('customers_report', '\App\Http\Controllers\Customers_Report@index');
+    Route::post('Search_customers', '\App\Http\Controllers\Customers_Report@Search_customers');
+
 
     Route::get('/{page}', [AdminController::class, 'index']);
 });

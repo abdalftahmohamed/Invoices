@@ -27,9 +27,9 @@ Route::get('/login', function () {
 })->name('login');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::group(['middleware'=>['auth','verified']],function () {
+    Route::resource('dashboard', '\App\Http\Controllers\DashboardController');
     Route::resource('invoices', '\App\Http\Controllers\InvoicesController');
     Route::resource('ArchiveController','\App\Http\Controllers\ArchiveController');
     Route::resource('InvoiceAttachments', '\App\Http\Controllers\InvoiceAttachmentsController');
@@ -67,6 +68,9 @@ Route::group(['middleware'=>['auth','verified']],function () {
 
     Route::get('customers_report', '\App\Http\Controllers\Customers_Report@index');
     Route::post('Search_customers', '\App\Http\Controllers\Customers_Report@Search_customers');
+    Route::get('Markallread','\App\Http\Controllers\InvoicesController@Markallread');
+    Route::get('ViewAll','\App\Http\Controllers\InvoicesController@ViewAll');
+
 
 
     Route::get('/{page}', [AdminController::class, 'index']);

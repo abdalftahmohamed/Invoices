@@ -9,7 +9,9 @@ use App\Models\invoices_details;
 use App\Models\Products;
 use App\Models\Sections;
 use App\Models\User;
+use App\Notifications\Add_Invoices_Now;
 use App\Notifications\AddInvoices;
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,14 +107,33 @@ class InvoicesController extends Controller
             $imageName = $request->pic->getClientOriginalName();
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
-
-//        $user = User::first();
-//        Notification::send($user, new AddInvoices($invoice_id));
+//دي هاخلي الالاشعارات تظهر لكل اليووزرز
+        $user = User::get();
+        //علشان اخلي اليوزر الالاي كاريت ال notification هو الالي يشوف الاشعار فقط
+//        $user = User::find(Auth::user()->id);
+//        $invoicee=Invoices::latest()->first()->id;
+        Notification::send($user, new Add_Invoices_Now($invoice_id));
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return back();
     }
-
+    public function Markallread(){
+        $user =User::find(auth()->user()->id);
+        foreach ($user->unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
+        return redirect()->back();
+    }
+    public function ViewAll()
+    {
+//        $user =User::find(auth()->user()->id);
+////        foreach ($user->unreadNotifications as $notification) {
+////            $notification->markAsRead();
+////        }
+//        $user->unreadNotifications->markAsRead();
+////        return $next($request);
+//        return redirect()->back();
+    }
     /**
      * Display the specified resource.
      *

@@ -63,7 +63,7 @@ class AddInvoices extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+
         ];
     }
 }

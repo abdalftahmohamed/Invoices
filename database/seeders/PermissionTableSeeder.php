@@ -16,8 +16,6 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
-
-
             'show sidebar',
             'notifications',
             'الفواتير',

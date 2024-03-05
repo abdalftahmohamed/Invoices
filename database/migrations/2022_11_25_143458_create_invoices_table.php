@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('product', 50)->nullable();
             $table->bigInteger( 'section_id' )->unsigned();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
-            $table->decimal('Amount_collection',8,2)->nullable();;
+            $table->decimal('Amount_collection',8,2)->nullable();
             $table->decimal('Amount_Commission',8,2);
             $table->decimal('Discount',8,2);
             $table->decimal('Value_VAT',8,2);

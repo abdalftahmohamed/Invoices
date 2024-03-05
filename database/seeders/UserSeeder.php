@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = [
-            ['name'  => 'Editor','email' => 'editor@editor.com','password' =>bcrypt('123456789')],
-            ['name'  => 'Author','email' => 'author@author.com','password' =>bcrypt('123456789')],
+            ['name'  => 'Editor','email' => 'editor@editor.com','Status' => 'مفعل','password' =>bcrypt('123456789'),'roles_name' => "owner"],
+            ['name'  => 'Author','email' => 'author@author.com','Status' => 'مفعل','password' =>bcrypt('123456789'),'roles_name' => "owner"],
         ];
 
         User::insert($admin);

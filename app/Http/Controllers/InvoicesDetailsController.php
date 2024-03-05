@@ -112,14 +112,14 @@ class InvoicesDetailsController extends Controller
 
     public function get_file($invoice_number,$file_name)
     {
-        $st="Attachments";
-        $pathToFile = public_path($st.'/'.$invoice_number.'/'.$file_name);
+//        $st="Attachments";
+        $pathToFile = public_path("Attachments".'/'.$invoice_number.'/'.$file_name);
         return response()->download($pathToFile);
     }
     public function open_file($invoice_number,$file_name)
     {
-        $st="Attachments";
-        $pathToFile = public_path($st.'/'.$invoice_number.'/'.$file_name);
+//        $st="Attachments";
+        $pathToFile = public_path("Attachments".'/'.$invoice_number.'/'.$file_name);
         return response()->file($pathToFile);
     }
 }

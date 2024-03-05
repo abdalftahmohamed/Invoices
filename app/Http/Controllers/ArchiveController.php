@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoices;
 use Illuminate\Http\Request;
-
+use Spatie\Permission\Models\Permission;
 class ArchiveController extends Controller
 {
     /**

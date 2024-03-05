@@ -183,7 +183,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="sections/update" method="post" autocomplete="off">
+                        <form action="{{route('sections.update',$id) }}" method="post" autocomplete="off">
                             {{method_field('patch')}}
                             {{csrf_field()}}
                             <div class="form-group">

@@ -91,10 +91,14 @@ class DashboardController extends Controller
             ->options([]);
 
 //        return view('dashboard');
+//        return view('admin::roles.index',['roles' => $role,'cat permissions' => $permissan]);
         return view('dashboard', compact('chartjs','chartjs_2'));
 
 
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
